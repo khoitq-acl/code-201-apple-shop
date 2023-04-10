@@ -77,7 +77,7 @@ main {
 .title {
   max-width: 1000px;
   margin: auto;
-  padding-top: 46px;
+  padding-top: 5rem;
   padding-bottom: 24px;
   font-weight: 600;
 }
@@ -172,9 +172,10 @@ main {
 }
 
 .item--product__thumpnail {
-  height: 7rem;
-  -o-object-fit: contain;
-     object-fit: contain;
+  height: 15rem;
+  width: 225px;
+  -o-object-fit: scale-down;
+     object-fit: scale-down;
   padding: 2rem 0 1rem 0;
 }
 
