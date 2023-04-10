@@ -74,6 +74,10 @@ main {
   color: black;
 }
 
+.menu a:hover {
+  color: #fca074;
+}
+
 .title {
   max-width: 1000px;
   margin: auto;
