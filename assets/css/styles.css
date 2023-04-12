@@ -62,6 +62,15 @@ main {
   font-size: 32px;
 }
 
+.search-icon {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.5rem;
+  -webkit-transform: translate3d(0.25rem, 0.25rem, 0);
+          transform: translate3d(0.25rem, 0.25rem, 0);
+  cursor: pointer;
+}
+
 .menu {
   display: -webkit-box;
   display: -ms-flexbox;
