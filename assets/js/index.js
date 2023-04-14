@@ -5,7 +5,7 @@ Hello World
   syntax: console.log( value1, value2, ...)
     
 2. string data type
-  syntax: "string value"
+  syntax: "string value"  
 
 */
 
