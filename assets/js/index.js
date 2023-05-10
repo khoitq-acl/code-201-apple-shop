@@ -1,13 +1,7 @@
-/*
+// render categories data
+const categoriesData = defaultCategories;
 
-<article class="item item--product">
-  <img src="/assets/images/macbook/macbook-pro-16.png"
-    alt="thumpnail Macbook pro 16" class="
-    item--product__thumpnail">
-  <p class="item--product__title">Macbook pro 16"</p>
-  <p class="item--product__price">$1399.00</p>
-</article>
-*/
+const categoriesItemsData = defaultData;
 
 
 /*
@@ -16,10 +10,7 @@
     {"name":"src","value": "/assets/images/macbook/macbook-pro-16.png"}
   ]
 */
-
-
 function customElement(tagName, attributes, content) {
-
   let element = document.createElement(tagName);
 
   const attrLength = attributes.length;
@@ -37,31 +28,15 @@ function customElement(tagName, attributes, content) {
 }
 
 
-function productItem() {
-
-  let article = customElement('article', [{ name: 'class', value: 'item item--product' }]);
-
-  let img = customElement('img', [
-    { name: 'class', value: 'item--product__thumpnail' },
-    { name: 'alt', value: 'thumpnail Macbook pro 16' },
-    { name: 'src', value: '/assets/images/macbook/macbook-pro-16.png' }
-  ]);
-
-  article.appendChild(img);
-
-  return article;
-}
 
 
 /*
   <a href="#macbook">Macbook</a>
 */
 function renderHeaderMenu(menuItems) {
-
   const menuItemsContainer = document.querySelector('header.header .menu__items');
 
   if (menuItemsContainer) {
-
     menuItemsContainer.innerHTML = '';
 
     for (let i = 0; i < menuItems.length; i++) {
@@ -84,33 +59,86 @@ function renderHeaderMenu(menuItems) {
 const menuItemsData = defaultCategories;
 renderHeaderMenu(menuItemsData);
 
-
-function renderCategories(categoriesData) {
+function renderCategories(categoriesInputData) {
   const container = document.querySelector('main');
 
   if (container) {
-    for (let i = 0; i < categoriesData.length; i++) {
-      const categoryData = categoriesData[i];
+    for (let i = 0; i < categoriesInputData.length; i++) {
+      const categoryData = categoriesInputData[i];
 
-      category = createElement('section', [{ name: 'class', value: categoryData.toLowerCase() }]);
-
+      let category = customElement('section', [{ name: 'id', value: categoryData.toLowerCase() }]);
       container.appendChild(category);
+
+      let title = customElement('h1', [{ name: 'class', value: 'title' }], categoryData);
+      category.appendChild(title);
+
+      let items = customElement('div', [{ name: 'class', value: 'items' }]);
+      category.appendChild(items);
+
+      renderCategoryItems(categoryData);
+    }
+
+  }
+
+}
+
+
+
+
+function renderCategoryItems(categoryData) {
+  const categoryId = categoryData.toLowerCase();
+
+  const container = document.querySelector(`#${categoryId} .items`);
+
+  if (container) {
+    const categoryItems = categoriesItemsData[categoryId];
+
+    for (let i = 0; i < categoryItems.length; i++) {
+      const categoryItem = categoryItems[i];
+
+      const item = productItem(categoryItem);
+      container.appendChild(item);
+
 
     }
 
   }
+
 }
 
+/*
+<article class="item item--product">
+  <img src="/assets/images/macbook/macbook-pro-16.png"
+    alt="thumpnail Macbook pro 16" class="
+    item--product__thumpnail">
+  <p class="item--product__title">Macbook pro 16"</p>
+  <p class="item--product__price">$1399.00</p>
+</article>
+*/
+function productItem(itemData) {
+  let article = customElement('article', [{ name: 'class', value: 'item item--product' }]);
 
-// render categories data
-const categoriesData = defaultData;
+  let img = customElement('img', [
+    { name: 'class', value: 'item--product__thumpnail' },
+    { name: 'alt', value: `Thumpnail ${itemData.name}` },
+    { name: 'src', value: itemData.img }
+  ]);
+
+  article.appendChild(img);
+
+  let title = customElement('p', [
+    { name: 'class', value: 'item--product__title' }
+  ], itemData.name);
+
+  article.appendChild(title);
+
+  let price = customElement('p', [
+    { name: 'class', value: 'item--product__price' }
+  ], itemData.price);
+
+  article.appendChild(price);
+
+  return article;
+}
+
 renderCategories(categoriesData);
-
-
-
-
-
-
-
-
-
