@@ -1,96 +1,116 @@
-/* 
-Hello World
-
-1. console.log function
-  syntax: console.log( value1, value2, ...)
-    
-2. string data type
-  syntax: "string value"  
-
-*/
-
-console.log("Hello World");
-
-
 /*
-Data Type
-1. string                // "Hello World"
-2. number                // 123
-3. boolean               // true / false
-4. undefined             
-5. null                  
-6. object        
-7. array                 // ["Hello World", 123, true, false]
-8. symbol
+
+<article class="item item--product">
+  <img src="/assets/images/macbook/macbook-pro-16.png"
+    alt="thumpnail Macbook pro 16" class="
+    item--product__thumpnail">
+  <p class="item--product__title">Macbook pro 16"</p>
+  <p class="item--product__price">$1399.00</p>
+</article>
 */
 
 
 /*
-variables                // A store data method
-  syntax: 
-      var variableName = value;
-      let variableName = value;
-      const variableName = value;
-
-  different:
-    - var: functional scope, changeable value  (not recommended to use)
-    - let: block scope, changeable value
-    - const: block scope, unchangeable value
-  
-*/
-
-// let name = "Khoi";
-// const age = 25;
-
-// console.log(name, age);
-
-
-
-/*
-Condition: logical expression that evaluates to true or false
-  - Boolean: true / false
-  - Comparison: Use comparison operators like
-    == equal to
-    != not equal to
-    > greater than
-    < less than
-    >= greater than or equal to
-    <= less than or equal to
-  - Logical
-    && and
-    || or
-    ! not
-
+  attributes: [
+    {"name":"class","value": "item item--product"}, 
+    {"name":"src","value": "/assets/images/macbook/macbook-pro-16.png"}
+  ]
 */
 
 
+function customElement(tagName, attributes, content) {
 
-/*
-If - Else condition statement
-  syntax: 
-        if (condition) {
-          // Code to be executed if condition is true
-        } else {
-          // Code to be executed if condition is false
-        }   
+  let element = document.createElement(tagName);
 
-*/
+  const attrLength = attributes.length;
 
-const age = 25;
+  for (let i = 0; i < attrLength; i++) {
+    const attribute = attributes[i];
+    element.setAttribute(attribute.name, attribute.value);
+  }
 
-if (age >= 18) {
+  if (content) {
+    element.innerHTML = content;
+  }
 
-  console.log("You are an adult");
+  return element;
+}
 
-} else {
 
-  console.log("You are not an adult");
+function productItem() {
 
+  let article = customElement('article', [{ name: 'class', value: 'item item--product' }]);
+
+  let img = customElement('img', [
+    { name: 'class', value: 'item--product__thumpnail' },
+    { name: 'alt', value: 'thumpnail Macbook pro 16' },
+    { name: 'src', value: '/assets/images/macbook/macbook-pro-16.png' }
+  ]);
+
+  article.appendChild(img);
+
+  return article;
 }
 
 
 /*
-Next step
+  <a href="#macbook">Macbook</a>
 */
+function renderHeaderMenu(menuItems) {
+
+  const menuItemsContainer = document.querySelector('header.header .menu__items');
+
+  if (menuItemsContainer) {
+
+    menuItemsContainer.innerHTML = '';
+
+    for (let i = 0; i < menuItems.length; i++) {
+      const menuItem = menuItems[i];
+
+      const menuItemElement = customElement(
+        'a',
+        [{ name: 'href', 'value': `#${menuItem.toLowerCase()}` }],
+        menuItem
+      );
+
+      menuItemsContainer.appendChild(menuItemElement);
+    }
+
+  }
+
+}
+
+// render menu header
+const menuItemsData = defaultCategories;
+renderHeaderMenu(menuItemsData);
+
+
+function renderCategories(categoriesData) {
+  const container = document.querySelector('main');
+
+  if (container) {
+    for (let i = 0; i < categoriesData.length; i++) {
+      const categoryData = categoriesData[i];
+
+      category = createElement('section', [{ name: 'class', value: categoryData.toLowerCase() }]);
+
+      container.appendChild(category);
+
+    }
+
+  }
+}
+
+
+// render categories data
+const categoriesData = defaultData;
+renderCategories(categoriesData);
+
+
+
+
+
+
+
 
 
