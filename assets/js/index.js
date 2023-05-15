@@ -1,96 +1,173 @@
-/* 
-Hello World
+// render categories data
+const categoriesData = defaultCategories;
 
-1. console.log function
-  syntax: console.log( value1, value2, ...)
-    
-2. string data type
-  syntax: "string value"  
-
-*/
-
-console.log("Hello World");
+const categoriesItemsData = defaultData;
 
 
 /*
-Data Type
-1. string                // "Hello World"
-2. number                // 123
-3. boolean               // true / false
-4. undefined             
-5. null                  
-6. object        
-7. array                 // ["Hello World", 123, true, false]
-8. symbol
+  attributes: [
+    {"name":"class","value": "item item--product"}, 
+    {"name":"src","value": "/assets/images/macbook/macbook-pro-16.png"}
+  ]
 */
+function customElement(tagName, attributes, content) {
+  let element = document.createElement(tagName);
 
+  const attrLength = attributes.length;
 
-/*
-variables                // A store data method
-  syntax: 
-      var variableName = value;
-      let variableName = value;
-      const variableName = value;
+  for (let i = 0; i < attrLength; i++) {
+    const attribute = attributes[i];
+    element.setAttribute(attribute.name, attribute.value);
+  }
 
-  different:
-    - var: functional scope, changeable value  (not recommended to use)
-    - let: block scope, changeable value
-    - const: block scope, unchangeable value
-  
-*/
+  if (content) {
+    element.innerHTML = content;
+  }
 
-// let name = "Khoi";
-// const age = 25;
+  return element;
+}
 
-// console.log(name, age);
 
 
 
 /*
-Condition: logical expression that evaluates to true or false
-  - Boolean: true / false
-  - Comparison: Use comparison operators like
-    == equal to
-    != not equal to
-    > greater than
-    < less than
-    >= greater than or equal to
-    <= less than or equal to
-  - Logical
-    && and
-    || or
-    ! not
-
+  <a href="#macbook">Macbook</a>
 */
+function renderHeaderMenu(menuItems) {
+  const menuItemsContainer = document.querySelector('header.header .menu__items');
 
+  if (menuItemsContainer) {
+    menuItemsContainer.innerHTML = '';
 
+    for (let i = 0; i < menuItems.length; i++) {
+      const menuItem = menuItems[i];
 
-/*
-If - Else condition statement
-  syntax: 
-        if (condition) {
-          // Code to be executed if condition is true
-        } else {
-          // Code to be executed if condition is false
-        }   
+      const menuItemElement = customElement(
+        'a',
+        [{ name: 'href', 'value': `#${menuItem.toLowerCase()}` }],
+        menuItem
+      );
 
-*/
+      menuItemsContainer.appendChild(menuItemElement);
+    }
 
-const age = 25;
+  }
 
-if (age >= 18) {
+}
 
-  console.log("You are an adult");
+// render menu header
+const menuItemsData = defaultCategories;
+renderHeaderMenu(menuItemsData);
 
-} else {
+function renderCategories(categoriesInputData) {
+  const container = document.querySelector('main');
 
-  console.log("You are not an adult");
+  if (container) {
+    for (let i = 0; i < categoriesInputData.length; i++) {
+      const categoryData = categoriesInputData[i];
+
+      let category = customElement('section', [{ name: 'id', value: categoryData.toLowerCase() }]);
+      container.appendChild(category);
+
+      let title = customElement('h1', [{ name: 'class', value: 'title' }], categoryData);
+      category.appendChild(title);
+
+      let items = customElement('div', [{ name: 'class', value: 'items' }]);
+      category.appendChild(items);
+
+      renderCategoryItems(categoryData);
+    }
+
+  }
 
 }
 
 
+
+
+function renderCategoryItems(categoryData) {
+  const categoryId = categoryData.toLowerCase();
+
+  const container = document.querySelector(`#${categoryId} .items`);
+
+  if (container) {
+    const categoryItems = categoriesItemsData[categoryId];
+
+    for (let i = 0; i < categoryItems.length; i++) {
+      const categoryItem = categoryItems[i];
+
+      const item = productItem(categoryItem);
+      container.appendChild(item);
+
+
+    }
+
+  }
+
+}
+
 /*
-Next step
+<article class="item item--product">
+  <img src="/assets/images/macbook/macbook-pro-16.png"
+    alt="thumpnail Macbook pro 16" class="
+    item--product__thumpnail">
+  <p class="item--product__title">Macbook pro 16"</p>
+  <div class="item--product__detail">
+    <p class="item--product__price">$1399.00</p>
+    <a class="add-to-cart">
+      <img src="/static/image/general/add_to_cart.png" alt="add to cart Macbook pro 16"/>
+    </a>
+  </div>
+  
+</article>
 */
+function productItem(itemData) {
+  let article = customElement('article', [{ name: 'class', value: 'item item--product' }, { name: 'id', value: itemData.id }]);
+
+  let img = customElement('img', [
+    { name: 'class', value: 'item--product__thumpnail' },
+    { name: 'alt', value: `Thumpnail ${itemData.name}` },
+    { name: 'src', value: itemData.img }
+  ]);
+  article.appendChild(img);
+
+  let title = customElement('p', [
+    { name: 'class', value: 'item--product__title' }
+  ], itemData.name);
+  article.appendChild(title);
+
+  let detail = customElement('div', [
+    { name: 'class', value: 'item--product__detail' }
+  ]);
+  article.appendChild(detail);
+
+  let price = customElement('p', [
+    { name: 'class', value: 'item--product__price' }
+  ], `$${itemData.price}`);
+  detail.appendChild(price);
 
 
+  // shopping cart
+  let addToCart = customElement('a', [
+    { name: 'class', value: 'add-to-cart' }
+  ]);
+  detail.appendChild(addToCart);
+
+  let addToCartImg = customElement('img', [
+    {
+      name: 'src', value: '/assets/images/general/add_to_cart.png',
+
+    }, {
+      name: 'alt', value: `add to cart ${itemData.name}`
+    }
+  ]);
+  addToCart.appendChild(addToCartImg);
+
+  shoppingCart.addEventAddToCartButton(addToCart, itemData);
+
+  return article;
+}
+
+renderCategories(categoriesData);
+
+shoppingCart.init();
