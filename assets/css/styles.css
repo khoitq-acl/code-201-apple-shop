@@ -10,6 +10,7 @@
   --max-content-width: 1000px;
   --shadow: 2px 2px 6px rgba(0, 0, 0, 0.08);
   --shadow-large: 2px 4px 12px rgba(0, 0, 0, 0.08);
+  --primary: #fca074;
 }
 
 html {
@@ -59,17 +60,17 @@ main {
 
 .logo {
   font-family: "Orbitron", sans-serif;
-  color: #fca074;
+  color: var(--primary);
   text-transform: uppercase;
   font-weight: bold;
   text-decoration: none;
   font-size: 32px;
 }
 
-.search-icon {
+.header__icon {
   width: 1rem;
   height: 1rem;
-  margin-right: 0.5rem;
+  margin-right: 1em;
   -webkit-transform: translate3d(0.25rem, 0.25rem, 0);
           transform: translate3d(0.25rem, 0.25rem, 0);
   cursor: pointer;
@@ -89,7 +90,7 @@ main {
 }
 
 .menu a:hover {
-  color: #fca074;
+  color: var(--primary);
 }
 
 .title {
@@ -202,7 +203,48 @@ main {
   font-weight: 700;
 }
 
+.item--product__detail {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .item--product__price {
+  margin: 0;
   text-align: left;
+}
+
+.item .add-to-cart {
+  margin: 0;
+  border: 1px solid var(--primary);
+  border-radius: 4px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.5rem;
+}
+
+.item .add-to-cart img {
+  width: 1rem;
+  height: 1rem;
+  margin: 0;
+}
+
+.item .add-to-cart .badge {
+  font-size: 0.75rem;
+  margin-left: 0.5rem;
+}
+
+.item .add-to-cart:hover {
+  background: var(--primary);
 }
 /*# sourceMappingURL=styles.css.map */

@@ -112,31 +112,58 @@ function renderCategoryItems(categoryData) {
     alt="thumpnail Macbook pro 16" class="
     item--product__thumpnail">
   <p class="item--product__title">Macbook pro 16"</p>
-  <p class="item--product__price">$1399.00</p>
+  <div class="item--product__detail">
+    <p class="item--product__price">$1399.00</p>
+    <a class="add-to-cart">
+      <img src="/static/image/general/add_to_cart.png" alt="add to cart Macbook pro 16"/>
+    </a>
+  </div>
+  
 </article>
 */
 function productItem(itemData) {
-  let article = customElement('article', [{ name: 'class', value: 'item item--product' }]);
+  let article = customElement('article', [{ name: 'class', value: 'item item--product' }, { name: 'id', value: itemData.id }]);
 
   let img = customElement('img', [
     { name: 'class', value: 'item--product__thumpnail' },
     { name: 'alt', value: `Thumpnail ${itemData.name}` },
     { name: 'src', value: itemData.img }
   ]);
-
   article.appendChild(img);
 
   let title = customElement('p', [
     { name: 'class', value: 'item--product__title' }
   ], itemData.name);
-
   article.appendChild(title);
+
+  let detail = customElement('div', [
+    { name: 'class', value: 'item--product__detail' }
+  ]);
+  article.appendChild(detail);
 
   let price = customElement('p', [
     { name: 'class', value: 'item--product__price' }
   ], itemData.price);
+  detail.appendChild(price);
 
-  article.appendChild(price);
+
+  // shopping cart
+  let addToCart = customElement('a', [
+    { name: 'class', value: 'add-to-cart' }
+  ]);
+  detail.appendChild(addToCart);
+
+  let addToCartImg = customElement('img', [
+    {
+      name: 'src', value: '/assets/images/general/add_to_cart.png',
+
+    }, {
+      name: 'alt', value: `add to cart ${itemData.name}`
+    }
+  ]);
+  addToCart.appendChild(addToCartImg);
+
+  shoppingCart.addEventAddToCartButton(addToCart, itemData);
 
   return article;
 }
