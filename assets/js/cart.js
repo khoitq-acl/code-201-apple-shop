@@ -58,6 +58,11 @@ let cart = {
 
     container.innerHTML = '';
 
+
+    if(cartItems.length == 0){
+      container.innerHTML = `<i>No Data</i>`;
+    }
+
     for (let i = 0; i < cartItems.length; i++) {
       let cartItem = cartItems[i];
 
