@@ -63,8 +63,6 @@ let cart = {
 
       let cartItemInfo = this.items[cartItem[0]];
 
-      console.log(cartItem, cartItemInfo);
-
       let cartItemElement = document.createElement('article');
       cartItemElement.setAttribute('class', "cart-item");
 

@@ -16,8 +16,6 @@ let shoppingCart = {
 
     }
 
-    console.log(this.cart)
-
     this.setCartToLocalStorage();
 
     this.updateAddToCartButtonBadge();
@@ -34,7 +32,7 @@ let shoppingCart = {
       delete this.cart[itemData.id];
 
     }
-    
+
     this.setCartToLocalStorage();
 
     this.updateAddToCartButtonBadge();
