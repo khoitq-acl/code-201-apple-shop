@@ -1,3 +1,9 @@
+---
+noteId: "c339cdf0f2f811ed82c3a74a795c62f0"
+tags: []
+
+---
+
 <!-- As a ____, I want ____ so that ____ -->
 
 # User Story
