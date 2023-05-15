@@ -143,7 +143,7 @@ function productItem(itemData) {
 
   let price = customElement('p', [
     { name: 'class', value: 'item--product__price' }
-  ], itemData.price);
+  ], `$${itemData.price}`);
   detail.appendChild(price);
 
 
@@ -169,3 +169,5 @@ function productItem(itemData) {
 }
 
 renderCategories(categoriesData);
+
+shoppingCart.init();

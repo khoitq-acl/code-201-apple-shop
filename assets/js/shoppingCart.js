@@ -1,6 +1,12 @@
 let shoppingCart = {
   cart: {},
 
+  init() {
+    this.getCartFromLocalStorage();
+
+    this.updateAddToCartButtonBadge();
+  },
+
   addToCart(itemData) {
     if (this.cart.hasOwnProperty(itemData.id)) {
       this.cart[itemData.id] += 1;
@@ -11,6 +17,26 @@ let shoppingCart = {
     }
 
     console.log(this.cart)
+
+    this.setCartToLocalStorage();
+
+    this.updateAddToCartButtonBadge();
+
+  },
+
+  removeFromCart(itemData) {
+    if (this.cart.hasOwnProperty(itemData.id)) {
+      this.cart[itemData.id] -= 1;
+
+    }
+
+    if (this.cart[itemData.id] <= 0) {
+      delete this.cart[itemData.id];
+
+    }
+    
+    this.setCartToLocalStorage();
+
     this.updateAddToCartButtonBadge();
 
   },
@@ -49,6 +75,15 @@ let shoppingCart = {
 
     }
 
+  },
+
+  setCartToLocalStorage() {
+    window.localStorage.setItem("cart", JSON.stringify(this.cart));
+  },
+
+  getCartFromLocalStorage() {
+    this.cart = JSON.parse(window.localStorage.getItem("cart"));
   }
 
 }
+
