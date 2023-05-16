@@ -49,8 +49,8 @@ let shoppingCart = {
   },
 
   updateAddToCartButtonBadge() {
-    console.log(Object,this.cart)
-    let cartItems = Object.entries(this.cart);
+
+    let cartItems = Object.entries(shoppingCart.cart);
 
     for (let i = 0; i < cartItems.length; i++) {
       const cartItem = cartItems[i];
