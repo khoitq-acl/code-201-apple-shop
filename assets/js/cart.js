@@ -3,7 +3,6 @@ const categoriesData = defaultCategories;
 
 const categoriesItemsData = defaultData;
 
-shoppingCart.init();
 
 let cart = {
 
@@ -38,7 +37,7 @@ let cart = {
   /*
         <article class="cart-item">
           <div class="cart-item__thumpnail">
-            <img src="/assets/images/airpods/airpods-gen2.png" class=" " alt="">
+            <img src="./assets/images/airpods/airpods-gen2.png" class=" " alt="">
           </div>
           <div class="cart-item__info">
             <h2>123123123123</h2>
@@ -59,7 +58,7 @@ let cart = {
     container.innerHTML = '';
 
 
-    if(cartItems.length == 0){
+    if (cartItems.length == 0) {
       container.innerHTML = `<i>No Data</i>`;
     }
 
@@ -88,7 +87,7 @@ let cart = {
       `;
 
       let plusButton = cartItemElement.querySelector(`.plus`);
-      plusButton.onclick = function(){
+      plusButton.onclick = function () {
         shoppingCart.addToCart(cartItemInfo);
 
         cart.renderCart();
@@ -96,11 +95,11 @@ let cart = {
       }
 
       let minsButton = cartItemElement.querySelector(`.mins`);
-      minsButton.onclick = function(){
+      minsButton.onclick = function () {
         shoppingCart.removeFromCart(cartItemInfo);
 
         cart.renderCart();
-        
+
       }
 
       container.appendChild(cartItemElement);
@@ -109,5 +108,7 @@ let cart = {
   }
 
 }
+
+shoppingCart.init();
 
 cart.init();

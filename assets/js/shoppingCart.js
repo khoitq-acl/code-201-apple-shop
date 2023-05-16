@@ -49,7 +49,8 @@ let shoppingCart = {
   },
 
   updateAddToCartButtonBadge() {
-    let cartItems = Object.entries(this.cart);
+
+    let cartItems = Object.entries(shoppingCart.cart);
 
     for (let i = 0; i < cartItems.length; i++) {
       const cartItem = cartItems[i];
@@ -80,7 +81,10 @@ let shoppingCart = {
   },
 
   getCartFromLocalStorage() {
-    this.cart = JSON.parse(window.localStorage.getItem("cart"));
+    if (JSON.parse(window.localStorage.getItem("cart"))) {
+      
+      this.cart = JSON.parse(window.localStorage.getItem("cart"));
+    }
   }
 
 }
