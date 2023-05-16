@@ -82,7 +82,7 @@ let shoppingCart = {
 
   getCartFromLocalStorage() {
     if (JSON.parse(window.localStorage.getItem("cart"))) {
-
+      
       this.cart = JSON.parse(window.localStorage.getItem("cart"));
     }
   }
