@@ -38,7 +38,7 @@ let cart = {
   /*
         <article class="cart-item">
           <div class="cart-item__thumpnail">
-            <img src="/assets/images/airpods/airpods-gen2.png" class=" " alt="">
+            <img src="./assets/images/airpods/airpods-gen2.png" class=" " alt="">
           </div>
           <div class="cart-item__info">
             <h2>123123123123</h2>

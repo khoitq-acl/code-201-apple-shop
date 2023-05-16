@@ -7,7 +7,7 @@ const categoriesItemsData = defaultData;
 /*
   attributes: [
     {"name":"class","value": "item item--product"}, 
-    {"name":"src","value": "/assets/images/macbook/macbook-pro-16.png"}
+    {"name":"src","value": "./assets/images/macbook/macbook-pro-16.png"}
   ]
 */
 function customElement(tagName, attributes, content) {
@@ -108,7 +108,7 @@ function renderCategoryItems(categoryData) {
 
 /*
 <article class="item item--product">
-  <img src="/assets/images/macbook/macbook-pro-16.png"
+  <img src="./assets/images/macbook/macbook-pro-16.png"
     alt="thumpnail Macbook pro 16" class="
     item--product__thumpnail">
   <p class="item--product__title">Macbook pro 16"</p>
