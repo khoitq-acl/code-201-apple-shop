@@ -155,7 +155,7 @@ function productItem(itemData) {
 
   let addToCartImg = customElement('img', [
     {
-      name: 'src', value: '/assets/images/general/add_to_cart.png',
+      name: 'src', value: './assets/images/general/add_to_cart.png',
 
     }, {
       name: 'alt', value: `add to cart ${itemData.name}`
