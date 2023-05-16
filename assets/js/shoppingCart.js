@@ -2,7 +2,6 @@ let shoppingCart = {
   cart: {},
 
   init() {
-    this.getCartFromLocalStorage();
 
     this.updateAddToCartButtonBadge();
   },
@@ -15,8 +14,6 @@ let shoppingCart = {
       this.cart[itemData.id] = 1;
 
     }
-
-    this.setCartToLocalStorage();
 
     this.updateAddToCartButtonBadge();
 
@@ -32,8 +29,6 @@ let shoppingCart = {
       delete this.cart[itemData.id];
 
     }
-
-    this.setCartToLocalStorage();
 
     this.updateAddToCartButtonBadge();
 
@@ -75,17 +70,6 @@ let shoppingCart = {
     }
 
   },
-
-  setCartToLocalStorage() {
-    window.localStorage.setItem("cart", JSON.stringify(this.cart));
-  },
-
-  getCartFromLocalStorage() {
-    if (JSON.parse(window.localStorage.getItem("cart"))) {
-      
-      this.cart = JSON.parse(window.localStorage.getItem("cart"));
-    }
-  }
 
 }
 
